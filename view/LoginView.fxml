@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -20,7 +21,7 @@
             </Text>
          </children>
       </HBox>
-      <Button id="button1" fx:id="signInButton" layoutX="106.0" layoutY="296.0" mnemonicParsing="false" onAction="#signIn" stylesheets="@application.css" text="Sign In">
+      <Button id="button1" fx:id="signInButton" layoutX="106.0" layoutY="296.0" mnemonicParsing="false" onAction="#showAlert2" stylesheets="@application.css" text="Sign In">
          <styleClass>
             <String fx:value="button1" />
             <String fx:value="button1:hover" />
@@ -39,15 +40,16 @@
             <String fx:value="button1:hover" />
          </styleClass>
       </Button>
-      <ImageView fitHeight="99.0" fitWidth="150.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="42.0" fitWidth="33.0" layoutX="120.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/icons8-linkedin.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="135.0" fitWidth="194.0" layoutX="23.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/download2.jpeg" />
          </image>
       </ImageView>
-      <Label layoutX="182.0" layoutY="56.0" text="LinkedIn Crawler" textFill="#fffefe">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
+      <Label layoutX="238.0" layoutY="32.0" styleClass="linkedIn" stylesheets="@application.css" text="LinkedIN Crawler" />
    </children>
 </AnchorPane>
