@@ -14,31 +14,33 @@ import javafx.stage.Stage;
 
 public class SearchWindowController implements Initializable{
 	
-	@FXML public ComboBox<String> degreeTypeCombo;
-	@FXML public ComboBox<String> stateComboBox;
+	//@FXML public ComboBox<String> degreeTypeCombo;
+	//@FXML public ComboBox<String> stateComboBox;
 	@FXML private Button cancelButton;
 	@FXML private Button searchButton;
-	@FXML private TextField gradYearField;
-	@FXML private TextField majorField;
-	@FXML private TextField professionField;
-	@FXML private TextField companyField;
+	@FXML private TextField firstNameField;
+	@FXML private TextField lastNameField;
+	@FXML private TextField stateField;
+	@FXML private TextField industryField;
+	@FXML private TextField positionField;
+
 	
 	
 	
 	//Picklist Values
-		ObservableList<String> degree = FXCollections.observableArrayList("Associates", "Bachelors", "Masters", "PhD");
+		/*ObservableList<String> degree = FXCollections.observableArrayList("Associates", "Bachelors", "Masters", "PhD");
 		ObservableList<String> stateList = FXCollections.observableArrayList("AK", "AL", "AR", "AZ", "CA", "CO", "CT", 
                 "DC", "DE", "FL", "GA", "HI", "IA", "ID", "IL", "IN", "KS", "KY", 
                 "LA", "MA", "MD", "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", 
                 "NE", "NH", "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", 
-                "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");
+                "SC", "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY");*/
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		degreeTypeCombo.setItems(degree);
+		/*degreeTypeCombo.setItems(degree);
 		degreeTypeCombo.setValue("Bachelors");
 		stateComboBox.setItems(stateList);
-		stateComboBox.setValue("GA");
+		stateComboBox.setValue("GA");*/
 		
 	}
 	
@@ -48,13 +50,13 @@ public class SearchWindowController implements Initializable{
 	}
 	
 	public void getQuery() {
-		System.out.println("School: GSU");
-		System.out.println("Grad Year: " + gradYearField.getText());
-		System.out.println("State: " + stateComboBox.getValue());
-		System.out.println("Major: " + majorField.getText());
-		System.out.println("Degree: " + degreeTypeCombo.getValue());
-		System.out.println("Profession: " + professionField.getText());
-		System.out.println("Company: " + companyField.getText());
+		System.out.println("First Name: " + firstNameField.getText());
+		System.out.println("Last Name: " + lastNameField.getText());
+		System.out.println("State: " + stateField.getText());
+		System.out.println("Industry: " + industryField.getText());
+		System.out.println("Position: " + positionField.getText());
+		//System.out.println("Degree: " + degreeTypeCombo.getValue());
+
 	}
 		
 		
