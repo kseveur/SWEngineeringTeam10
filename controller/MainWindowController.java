@@ -47,10 +47,16 @@ public class MainWindowController implements Initializable{
 		this.main = main;
 	}
 	
-	public void handleButton() {
-		//String text = field.getText();
-		//label.setText(text);
-		//field.clear();
+	
+	public void signIn() {
+		System.out.println("Username: " + userNameField.getText());
+		System.out.println("Password: " + passwordField.getText());
+		
+	}
+	
+	public void signUp() {
+		System.out.println("Username: " + userNameField.getText());
+		System.out.println("Password: " + passwordField.getText());
 	}
 	
 	public void showAlert2() {
@@ -62,12 +68,10 @@ public class MainWindowController implements Initializable{
 	}
 	
 
-	public void searchViewSwitch() {
+	/*public void searchViewSwitch() {
 		Stage stage = (Stage) signUpButton.getScene().getWindow();
 	    stage.close();
-	    
-	   
-	}
+	}*/
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -77,13 +81,14 @@ public class MainWindowController implements Initializable{
 	
 	
 	
+	
 	//This method is only an event listener for testing and will be changed to a remove the action event.
 	//Method will be called upon complete sign-in
 	public void handleButtonAction(ActionEvent event) {
 		Stage stage2 = (Stage) signUpButton.getScene().getWindow();
 	    stage2.close();
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SearchView.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SignUpView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
 			Stage stage = new Stage();
 			stage.setScene(new Scene(root1));  
