@@ -40,17 +40,17 @@ public class SignUpController implements Initializable{
 	
 	
 	public void signUp() {
-		System.out.println("Username: " + firstNameSUField.getText());
-		System.out.println("Password: " + lastNameSUField.getText());
-		System.out.println("Username: " + emailSUField.getText());
-		System.out.println("Username: " + passwordSUField.getText());
+		System.out.println("FirstName: " + firstNameSUField.getText());
+		System.out.println("LastName: " + lastNameSUField.getText());
+		System.out.println("Email: " + emailSUField.getText());
+		System.out.println("Password: " + passwordSUField.getText());
 	}
 	
 	public void showAlert2() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error");
-		alert.setHeaderText("Incorrect Login or Password!");
-		alert.setContentText("Please try logging in again");
+		alert.setHeaderText("Username not available!");
+		alert.setContentText("Please use a different username for signup");
 		alert.showAndWait();		
 	}
 	
