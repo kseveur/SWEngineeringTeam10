@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -22,7 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-public class MainWindowController implements Initializable{
+public class MainWindowController implements Initializable, LinkedInClientIF{
 	
 	//Picklist Values
 	ObservableList<String> degree = FXCollections.observableArrayList("Associates", "Bachelors", "Masters", "PhD");
@@ -51,6 +52,18 @@ public class MainWindowController implements Initializable{
 	public void signIn() {
 		System.out.println("Username: " + userNameField.getText());
 		System.out.println("Password: " + passwordField.getText());
+		
+		boolean response = false;
+		try {
+			response = sendLoginInfo(userNameField.getText()+", " + passwordField.getText());
+		} catch (RemoteException e) {
+			System.out.println("Error reaching Admin module!");
+			e.printStackTrace();
+		}
+		if(response) { searchScreenLoader(); }
+		else { showAlert2(); }
+		
+		
 		
 	}
 	
@@ -84,7 +97,7 @@ public class MainWindowController implements Initializable{
 	
 	//This method is only an event listener for testing and will be changed to a remove the action event.
 	//Method will be called upon complete sign-in
-	public void handleButtonAction(ActionEvent event) {
+	public void signUpButtonAction(ActionEvent event) {
 		Stage stage2 = (Stage) signUpButton.getScene().getWindow();
 	    stage2.close();
 		try {
@@ -98,5 +111,28 @@ public class MainWindowController implements Initializable{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void searchScreenLoader() {
+		Stage stage2 = (Stage) signInButton.getScene().getWindow();
+	    stage2.close();
+		try {
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SearchView.fxml"));
+			Parent root1 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.setScene(new Scene(root1));  
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+
+	@Override
+	public boolean sendLoginInfo(String Message) throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
 	}
 }
