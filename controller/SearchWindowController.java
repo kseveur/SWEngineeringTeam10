@@ -55,8 +55,6 @@ public class SearchWindowController implements Initializable{
 		System.out.println("State: " + stateField.getText());
 		System.out.println("Industry: " + industryField.getText());
 		System.out.println("Position: " + positionField.getText());
-		//System.out.println("Degree: " + degreeTypeCombo.getValue());
-
 	}
 		
 		
