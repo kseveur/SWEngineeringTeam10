@@ -23,7 +23,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
-public class MainWindowController implements Initializable, LinkedInClientIF{
+public class MainWindowController implements Initializable{ //, LinkedInClientIF{
 	
 	//Picklist Values
 	ObservableList<String> degree = FXCollections.observableArrayList("Associates", "Bachelors", "Masters", "PhD");
@@ -54,19 +54,31 @@ public class MainWindowController implements Initializable, LinkedInClientIF{
 		System.out.println("Password: " + passwordField.getText());
 		
 		boolean response = false;
-		try {
+		/*try {
 			response = sendLoginInfo(userNameField.getText()+", " + passwordField.getText());
 		} catch (RemoteException e) {
 			System.out.println("Error reaching Admin module!");
 			e.printStackTrace();
 		}
 		if(response) { searchScreenLoader(); }
-		else { showAlert2(); }
+		else { showAlert2(); }*/
 		
 		
 		
 	}
 	
+	/*@Override
+	public boolean sendLoginInfo(String Message) throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	/*private boolean sendLoginInfo(String string) {
+		// TODO Auto-generated method stub
+		return false;
+	}*/
+
+
 	public void signUp() {
 		System.out.println("Username: " + userNameField.getText());
 		System.out.println("Password: " + passwordField.getText());
@@ -98,8 +110,8 @@ public class MainWindowController implements Initializable, LinkedInClientIF{
 	//This method is only an event listener for testing and will be changed to a remove the action event.
 	//Method will be called upon complete sign-in
 	public void signUpButtonAction(ActionEvent event) {
-		Stage stage2 = (Stage) signUpButton.getScene().getWindow();
-	    stage2.close();
+		Stage stage1 = (Stage) signUpButton.getScene().getWindow();
+	    stage1.close();
 		try {
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/SignUpView.fxml"));
 			Parent root1 = (Parent) fxmlLoader.load();
@@ -130,9 +142,9 @@ public class MainWindowController implements Initializable, LinkedInClientIF{
 	}
 
 
-	@Override
+	/*@Override
 	public boolean sendLoginInfo(String Message) throws RemoteException {
 		// TODO Auto-generated method stub
 		return true;
-	}
+	}*/
 }
