@@ -25,7 +25,7 @@ public class SignUpController implements Initializable{
 	@FXML private Text errorText;
 	@FXML private TextField firstNameSUField;
 	@FXML private TextField lastNameSUField;
-	@FXML private TextField emailSUField;
+	@FXML private TextField userNameSUField;
 	@FXML private TextField passwordSUField;
 	@FXML private Button signUpButton;
 
@@ -42,7 +42,7 @@ public class SignUpController implements Initializable{
 	public void signUp() {
 		System.out.println("FirstName: " + firstNameSUField.getText());
 		System.out.println("LastName: " + lastNameSUField.getText());
-		System.out.println("Email: " + emailSUField.getText());
+		System.out.println("Email: " + userNameSUField.getText());
 		System.out.println("Password: " + passwordSUField.getText());
 	}
 	
@@ -87,3 +87,4 @@ public class SignUpController implements Initializable{
 		
 	}
 }
+
