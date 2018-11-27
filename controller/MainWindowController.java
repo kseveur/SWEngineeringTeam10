@@ -2,31 +2,33 @@ package controller;
 
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
-public class MainWindowController implements Initializable, LinkedInClientIF{
+public class MainWindowController extends RMIClientInitializer implements Initializable {
 	
 	//Picklist Values
-	ObservableList<String> degree = FXCollections.observableArrayList("Associates", "Bachelors", "Masters", "PhD");
+	//ObservableList<String> degree = FXCollections.observableArrayList("Associates", "Bachelors", "Masters", "PhD");
 	
 	
 	//Views
@@ -39,6 +41,7 @@ public class MainWindowController implements Initializable, LinkedInClientIF{
 	@FXML private TextField gradYearField;
 	@FXML private TextField stateField;
 	@FXML public ComboBox<String> degreeTypeCombo;
+	public int userSessionId = 0;
 
 	private Main main;
 	private Stage primaryStage;
@@ -49,34 +52,55 @@ public class MainWindowController implements Initializable, LinkedInClientIF{
 	}
 	
 	
-	public void signIn() {
-		System.out.println("Username: " + userNameField.getText());
-		System.out.println("Password: " + passwordField.getText());
-		
-		boolean response = false;
-		try {
-			response = sendLoginInfo(userNameField.getText()+", " + passwordField.getText());
-		} catch (RemoteException e) {
-			System.out.println("Error reaching Admin module!");
-			e.printStackTrace();
-		}
-		if(response) { searchScreenLoader(); }
-		else { showAlert2(); }
-		
-		
+	public void test() {
+		searchScreenLoader();
 		
 	}
 	
-	public void signUp() {
+	
+	public void signIn() throws MalformedURLException, RemoteException, NotBoundException { //login rmi method 
+		/////////////////////////********* RMI CODE START *********////////////////////////{
 		System.out.println("Username: " + userNameField.getText());
 		System.out.println("Password: " + passwordField.getText());
+		
+		
+		RMILoader();
+		try {
+		adminServerinterface client = (adminServerinterface) Naming.lookup("rmi://"+ getAdminIp() +"/binded");  //calling loginuser method from admin server 
+		System.out.println("Successfully Connected to Admin module's RMI Server");
+		if (client.loginuser(userNameField.getText(),passwordField.getText())) {
+			System.out.println("User Login Succesfully");
+			TimeUnit.SECONDS.sleep(2);
+			searchScreenLoader();
+		}
+		else {
+			showAlert2();  //username not available 
+		}
+		} catch (Exception e) {
+			 System.out.println ("Could not Connect to RMI Server. Make sure rmi registry is running on server machine and Server IP is correct. ");
+			 System.out.println(e);
+		}
+		
 	}
+	
+	/*public void signUp() {
+		System.out.println("Username: " + userNameField.getText());
+		System.out.println("Password: " + passwordField.getText());
+	}*/
 	
 	public void showAlert2() {
 		Alert alert = new Alert(AlertType.ERROR);
 		alert.setTitle("Error");
 		alert.setHeaderText("Incorrect Login or Password!");
 		alert.setContentText("Please try logging in again");
+		alert.showAndWait();		
+	}
+	
+	public void alertSigninOrSignup() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error");
+		alert.setHeaderText("Credentials have been added!");
+		alert.setContentText("Please hit the Sign-In button or clear credentials to sign up");
 		alert.showAndWait();		
 	}
 	
@@ -130,9 +154,9 @@ public class MainWindowController implements Initializable, LinkedInClientIF{
 	}
 
 
-	@Override
+	/*@Override
 	public boolean sendLoginInfo(String Message) throws RemoteException {
 		// TODO Auto-generated method stub
 		return true;
-	}
+	}*/
 }
