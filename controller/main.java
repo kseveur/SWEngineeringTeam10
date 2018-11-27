@@ -1,6 +1,7 @@
 package controller;
 	
 import java.io.IOException;
+import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+//import linkedin_adminRMIServer.RMIClientInitializer;
 
 
 public class Main extends Application {
@@ -41,6 +43,12 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		Scanner input = new Scanner (System.in);
+		System.out.print("Enter the Admin APP's RMI Server IP address: ");
+		RMIClientInitializer.setAdminIp(input.nextLine());
+		System.out.print("Enter the backend's RMI Server IP address: ");
+		RMIClientInitializer.setBackendIp(input.nextLine());
+		input.close();
 		launch(args);
 	}
 }
